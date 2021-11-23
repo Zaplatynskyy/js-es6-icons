@@ -5,9 +5,79 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 /* ******HEADER****** */
 
+header .header_top {
+    height: 50px;
+    color: #29b1dd;
+    padding: 0 20px;
+}
+
+.header_top h1 {
+    line-height: 50px;
+    font-size: 38px;
+    font-family: 'Acme', sans-serif;
+}
+
+header .header_nav {
+    text-align: center;
+    height: 80px;
+    line-height: 80px;
+    background-color: #29b1dd;
+}
+
+.header_nav .text {
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    vertical-align: middle;
+    color: white;
+    margin: 0 15px;
+}
 /* ******MAIN****** */
+.icons {
+    height: calc(100vh - 130px);
+    background-color: #dddddd;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
+.icon {
+    width: 250px;
+    height: 100px;
+    background-color: white;
+    box-shadow: 2px 2px 8px -3px #000000;
+    border-radius: 10px;
+    margin: 0 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-/* ******DEBUG****** */
+.icon i {
+    font-size: 40px;
+}
+
+.icon .name {
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.blue {
+    color: #0000ff;
+}
+
+.orange {
+    color: #ffa500;
+}
+
+.violet {
+    color: #800080;
+}
