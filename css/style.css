@@ -42,7 +42,7 @@ header .header_nav {
 .icons {
     height: calc(100vh - 130px);
     background-color: #dddddd;
-    padding: 40px 0;
+    padding: 20px 0;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -54,7 +54,7 @@ header .header_nav {
     background-color: white;
     box-shadow: 2px 2px 8px -3px #000000;
     border-radius: 10px;
-    margin: 0 30px;
+    margin: 10px 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -66,8 +66,8 @@ header .header_nav {
 }
 
 .icon .name {
-    font-size: 18px;
     text-transform: uppercase;
+    margin: 5px 0;
 }
 
 .blue {
@@ -78,6 +78,6 @@ header .header_nav {
     color: #ffa500;
 }
 
-.violet {
-    color: #800080;
+.green {
+    color: #108800;
 }
