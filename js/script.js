@@ -113,7 +113,26 @@ const cats = [
 	}
 ];
 
-cats.forEach(element => {
+document.getElementById('filter').value = 'all';
+cats.forEach(addIcon);
+
+const filterSelected = document.getElementById('filter');
+filterSelected.addEventListener("change",
+    function () {
+        document.querySelector('.icons').innerHTML = '';
+        const filterType = document.getElementById('filter').value;
+        
+        cats.forEach(element => {
+            if(element.type == filterType) {
+                addIcon(element);
+            } else if (filterType == 'all') {
+                addIcon(element);
+            }
+        });
+    }
+);
+
+function addIcon(element) {
     const i = document.createElement('i'); 
     i.classList.add(element.family, element.prefix + element.name);
     i.classList.add(`${element.color}`)  
@@ -127,14 +146,7 @@ cats.forEach(element => {
     icon.append(i, name);
     
     document.querySelector('.icons').append(icon);
-});
-
-
-
-
-
-
-
+}
 
 // Milestone 1 Partendo dalla struttura dati fornita, visualizzare in pagina un box per ogni icona, in cui è presente il nome dell'icona e l'icona stessa.
 
