@@ -39,9 +39,12 @@ header .header_nav {
     margin: 0 15px;
 }
 /* ******MAIN****** */
-.icons {
+main {
     height: calc(100vh - 130px);
     background-color: #dddddd;
+}
+
+.icons {
     padding: 20px 0;
     display: flex;
     justify-content: center;

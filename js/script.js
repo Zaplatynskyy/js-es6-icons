@@ -113,17 +113,30 @@ const cats = [
 	}
 ];
 
+// creo dinamicamente la finestra select con un valore generico
+document.querySelector('.header_nav').innerHTML += `
+	<select id="filter">
+		<option value="all">All</option>
+	</select>
+`;
+
+// richiamo la funzione addSelect per inserire altri elementi dentro la select in base ai tipi di dati contenuti dentro il mio array cats
+addSelect('filter', cats);
+
+// all'avvito della pagina setto il select su 'all' generico
 document.getElementById('filter').value = 'all';
+// avvio un ciclo per creare un icona per ogni elemento del mio array di oggetti
 cats.forEach(addIcon);
 
+// definisco ed assegno l'evento change alla mia section in modo da cambiare gli elementi visualizzati in base al tipo di elemento selezionato
 const filterSelected = document.getElementById('filter');
 filterSelected.addEventListener("change",
     function () {
         document.querySelector('.icons').innerHTML = '';
         const filterType = document.getElementById('filter').value;
         
-        cats.forEach(element => {
-            if(element.type == filterType) {
+        cats.filter(element => { 
+            if(filterType == element.type) {
                 addIcon(element);
             } else if (filterType == 'all') {
                 addIcon(element);
@@ -132,6 +145,9 @@ filterSelected.addEventListener("change",
     }
 );
 
+// ******FUNZIONI
+
+// funzione per creare ed inserire un div icon con i suoi vari elementi, dentro il suo apposito contenitore icons
 function addIcon(element) {
     const i = document.createElement('i'); 
     i.classList.add(element.family, element.prefix + element.name);
@@ -146,6 +162,25 @@ function addIcon(element) {
     icon.append(i, name);
     
     document.querySelector('.icons').append(icon);
+}
+
+// funzione per creare lista option in una select di partenza di id: idSelect, sulla base del tipo di dati di un array: arrayData
+function addSelect(idSelect, arrayData) {
+	let arrayOption = [];
+
+	arrayData.forEach(element => {
+		if(!arrayOption.includes(element.type)) {
+			arrayOption.push(element.type);
+		}
+	});
+
+	arrayOption.forEach(element => {
+		const option = document.createElement('option');
+		option.value = element;
+		option.innerHTML = element.charAt(0).toUpperCase() + element.slice(1);
+			
+		document.getElementById(idSelect).append(option);
+	});
 }
 
 // Milestone 1 Partendo dalla struttura dati fornita, visualizzare in pagina un box per ogni icona, in cui è presente il nome dell'icona e l'icona stessa.
