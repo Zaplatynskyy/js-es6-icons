@@ -1,4 +1,4 @@
-const cats = [
+const myIcons = [
 	{
 		name: 'cat',
 		prefix: 'fa-',
@@ -113,6 +113,30 @@ const cats = [
 	}
 ];
 
+// elemento di funzione che mi ritorna un array che raggruppa i tipi di elementi presenti nel mio arrai di dati 
+const arrayType = () => {
+	let arrayOption = [];
+	// dato il mio array ed inserisco il type facendo una verifica per non creare doppioni
+	myIcons.forEach(element => {
+		if(!arrayOption.includes(element.type)) {
+			arrayOption.push(element.type);
+		}
+	});
+
+	return arrayOption;
+}
+
+// ciclo for per inserire colori casuali per tipo ad elementi di un array 
+for(let i = 0; i < arrayType().length; i++) {
+	const color = randomColor();
+	// cambio il mio array dati di icone assegnando un nuovo colore per ogni tipo di elementi
+	myIcons.forEach(element => {
+		if(element.type == arrayType()[i]) {
+			element.color = color;
+		}
+	});	
+}
+
 // creo dinamicamente la finestra select con un valore generico
 document.querySelector('.header_nav').innerHTML += `
 	<select id="filter">
@@ -120,13 +144,13 @@ document.querySelector('.header_nav').innerHTML += `
 	</select>
 `;
 
-// richiamo la funzione addSelect per inserire altri elementi dentro la select in base ai tipi di dati contenuti dentro il mio array cats
-addSelect('filter', cats);
+// richiamo la funzione addSelect per inserire altri elementi dentro la select in base ai tipi di dati contenuti dentro il mio array myIcons
+addSelect(arrayType(), 'filter');
 
 // all'avvito della pagina setto il select su 'all' generico
 document.getElementById('filter').value = 'all';
 // avvio un ciclo per creare un icona per ogni elemento del mio array di oggetti
-cats.forEach(addIcon);
+myIcons.forEach(addIcon);
 
 // definisco ed assegno l'evento change alla mia section in modo da cambiare gli elementi visualizzati in base al tipo di elemento selezionato
 const filterSelected = document.getElementById('filter');
@@ -135,8 +159,8 @@ filterSelected.addEventListener("change",
         document.querySelector('.icons').innerHTML = '';
         const filterType = document.getElementById('filter').value;
         
-        cats.filter(element => { 
-            if(filterType == element.type) {
+        myIcons.filter(element => { 
+            if(element.type == filterType) {
                 addIcon(element);
             } else if (filterType == 'all') {
                 addIcon(element);
@@ -151,8 +175,7 @@ filterSelected.addEventListener("change",
 function addIcon(element) {
     const i = document.createElement('i'); 
     i.classList.add(element.family, element.prefix + element.name);
-    // i.classList.add(`${element.color}`)
-	i.style.color = randomColor();  
+	i.style.color = element.color;  
 
     const name = document.createElement('div'); 
     name.className = 'name';
@@ -166,16 +189,9 @@ function addIcon(element) {
 }
 
 // funzione per creare lista option in una select di partenza di id: idSelect, sulla base del tipo di dati di un array: arrayData
-function addSelect(idSelect, arrayData) {
-	let arrayOption = [];
-
-	arrayData.forEach(element => {
-		if(!arrayOption.includes(element.type)) {
-			arrayOption.push(element.type);
-		}
-	});
-
-	arrayOption.forEach(element => {
+function addSelect(array, idSelect) {
+	
+	array.forEach(element => {
 		const option = document.createElement('option');
 		option.value = element;
 		option.innerHTML = element.charAt(0).toUpperCase() + element.slice(1);
