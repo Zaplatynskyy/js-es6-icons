@@ -116,6 +116,7 @@ const cats = [
 cats.forEach(element => {
     const i = document.createElement('i'); 
     i.classList.add(element.family, element.prefix + element.name);
+    i.classList.add(`${element.color}`)  
 
     const name = document.createElement('div'); 
     name.className = 'name';
