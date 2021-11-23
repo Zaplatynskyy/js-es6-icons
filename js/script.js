@@ -151,7 +151,8 @@ filterSelected.addEventListener("change",
 function addIcon(element) {
     const i = document.createElement('i'); 
     i.classList.add(element.family, element.prefix + element.name);
-    i.classList.add(`${element.color}`)  
+    // i.classList.add(`${element.color}`)
+	i.style.color = randomColor();  
 
     const name = document.createElement('div'); 
     name.className = 'name';
@@ -181,6 +182,18 @@ function addSelect(idSelect, arrayData) {
 			
 		document.getElementById(idSelect).append(option);
 	});
+}
+
+// funzione che restituisce un colore rgb casuale
+function randomColor() {
+	let color = '#';
+	for(let i = 0; i < 6; i++) {
+		const rangeColor = '0123456789ABCDEF';
+		const numRandom = Math.floor(Math.random() * rangeColor.length);
+		color += rangeColor[numRandom];
+	}
+	
+	return color;
 }
 
 // Milestone 1 Partendo dalla struttura dati fornita, visualizzare in pagina un box per ogni icona, in cui è presente il nome dell'icona e l'icona stessa.
